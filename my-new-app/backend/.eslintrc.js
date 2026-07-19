@@ -22,7 +22,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: "module",
-    project: "./tsconfig.json",
+    project: "./tsconfig.eslint.json",
     tsconfigRootDir: __dirname,
   },
   plugins: ["@typescript-eslint", "import"],
@@ -66,7 +66,7 @@ module.exports = {
     "import/resolver": {
       typescript: {
         alwaysTryTypes: true,
-        project: path.join(__dirname, "tsconfig.json"),
+        project: path.join(__dirname, "tsconfig.eslint.json"),
       },
     },
   },
