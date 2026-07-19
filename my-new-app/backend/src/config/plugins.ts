@@ -42,11 +42,22 @@ export async function registerPlugins(fastify: FastifyInstance): Promise<void> {
     },
   });
 
-  // JWT authentication
+  // JWT authentication (access tokens)
   await fastify.register(jwt, {
     secret: config.JWT_SECRET,
     sign: {
       expiresIn: config.JWT_EXPIRES_IN,
+    },
+  });
+
+  // JWT authentication (refresh tokens) -- separate secret/expiry, registered
+  // under a namespace so it doesn't collide with the access-token instance
+  // above. Decorates fastify.refreshJwtSign()/refreshJwtVerify().
+  await fastify.register(jwt, {
+    secret: config.JWT_REFRESH_SECRET,
+    namespace: "refresh",
+    sign: {
+      expiresIn: config.JWT_REFRESH_EXPIRES_IN,
     },
   });
 

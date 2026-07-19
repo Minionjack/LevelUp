@@ -8,6 +8,9 @@
 import { FastifyInstance } from "fastify";
 
 import { config } from "@/config/env";
+import { authRoutes } from "@/routes/auth";
+import { categoryRoutes } from "@/routes/categories";
+import { habitRoutes } from "@/routes/habits";
 import { healthRoutes } from "@/routes/health";
 import { logger } from "@/utils/logger";
 
@@ -36,10 +39,13 @@ export async function registerRoutes(fastify: FastifyInstance): Promise<void> {
     };
   });
 
-  // TODO: Register route modules
-  // await fastify.register(authRoutes, { prefix: `${config.API_PREFIX}/auth` });
-  // await fastify.register(habitRoutes, { prefix: `${config.API_PREFIX}/habits` });
-  // await fastify.register(categoryRoutes, { prefix: `${config.API_PREFIX}/categories` });
+  await fastify.register(authRoutes, { prefix: `${config.API_PREFIX}/auth` });
+  await fastify.register(habitRoutes, {
+    prefix: `${config.API_PREFIX}/habits`,
+  });
+  await fastify.register(categoryRoutes, {
+    prefix: `${config.API_PREFIX}/categories`,
+  });
 
   logger.info(`✅ Routes registered with prefix: ${config.API_PREFIX}`);
 }
