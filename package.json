@@ -1,0 +1,92 @@
+{
+  "name": "levelup-app",
+  "version": "1.0.0",
+  "description": "LevelUp - Adaptive Self-Improvement Game. Transform your goals into an adventure with gamified habit tracking.",
+  "private": true,
+  "workspaces": [
+    "my-new-app",
+    "my-new-app/backend"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:frontend && npm run install:backend",
+    "install:frontend": "cd my-new-app && npm install",
+    "install:backend": "cd my-new-app/backend && npm install",
+    "setup": "bash scripts/setup.sh",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd my-new-app/backend && npm run dev",
+    "dev:frontend": "cd my-new-app && npm start",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd my-new-app/backend && npm run build",
+    "build:frontend": "cd my-new-app && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd my-new-app/backend && npm test",
+    "test:frontend": "cd my-new-app && npm test",
+    "test:api": "bash scripts/test-api.sh",
+    "test:coverage": "npm run test:coverage:backend && npm run test:coverage:frontend",
+    "test:coverage:backend": "cd my-new-app/backend && npm run test:coverage",
+    "test:coverage:frontend": "cd my-new-app && npm run test:coverage",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd my-new-app/backend && npm run lint",
+    "lint:frontend": "cd my-new-app && npm run lint",
+    "lint:fix": "npm run lint:fix:backend && npm run lint:fix:frontend",
+    "lint:fix:backend": "cd my-new-app/backend && npm run lint:fix",
+    "lint:fix:frontend": "cd my-new-app && npm run lint:fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "typecheck": "npm run typecheck:backend && npm run typecheck:frontend",
+    "typecheck:backend": "cd my-new-app/backend && npm run typecheck",
+    "typecheck:frontend": "cd my-new-app && npm run typecheck",
+    "clean": "npm run clean:backend && npm run clean:frontend",
+    "clean:backend": "cd my-new-app/backend && npm run clean",
+    "clean:frontend": "cd my-new-app && npm run clean",
+    "migrate": "cd my-new-app/backend && npm run migrate",
+    "seed": "cd my-new-app/backend && npm run seed",
+    "db:reset": "cd my-new-app/backend && npm run db:reset",
+    "health": "bash scripts/health-check.sh",
+    "validate:env": "node scripts/validate-env.js",
+    "prepare": "husky install || true"
+  },
+  "keywords": [
+    "habit-tracking",
+    "self-improvement",
+    "gamification",
+    "react-native",
+    "mobile-app",
+    "productivity"
+  ],
+  "author": "LevelUp Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "metro": "^0.82.5",
+    "metro-runtime": "^0.82.5",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Minionjack/LevelUp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Minionjack/LevelUp/issues"
+  },
+  "homepage": "https://github.com/Minionjack/LevelUp#readme",
+  "dependencies": {
+    "react-native-worklets": "^0.7.1",
+    "react-native-worklets-core": "^1.6.2"
+  }
+}
