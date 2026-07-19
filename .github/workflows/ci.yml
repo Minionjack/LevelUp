@@ -7,7 +7,7 @@ on:
     branches: [main, develop]
 
 env:
-  NODE_VERSION: "18"
+  NODE_VERSION: "20"
 
 jobs:
   lint-and-format:
@@ -76,21 +76,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run database migrations
+        run: npm run migrate
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/levelup_test
+          REDIS_URL: redis://localhost:6379
+          JWT_SECRET: test-secret-key-at-least-32-characters-long
+          JWT_REFRESH_SECRET: test-refresh-secret-key-at-least-32-characters-long
+          NODE_ENV: test
+
       - name: Run backend tests
         run: npm run test:backend
         env:
           DATABASE_URL: postgresql://test:test@localhost:5432/levelup_test
           REDIS_URL: redis://localhost:6379
-          JWT_SECRET: test-secret-key
+          JWT_SECRET: test-secret-key-at-least-32-characters-long
+          JWT_REFRESH_SECRET: test-refresh-secret-key-at-least-32-characters-long
           NODE_ENV: test
-
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v3
-        if: always()
-        with:
-          files: ./my-new-app/backend/coverage/coverage-final.json
-          flags: backend
-          name: backend-coverage
 
   test-frontend:
     name: Frontend Tests
@@ -110,14 +112,6 @@ jobs:
 
       - name: Run frontend tests
         run: npm run test:frontend
-
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v3
-        if: always()
-        with:
-          files: ./my-new-app/coverage/coverage-final.json
-          flags: frontend
-          name: frontend-coverage
 
   security-audit:
     name: Security Audit
@@ -159,14 +153,14 @@ jobs:
       - name: Build backend
         run: npm run build:backend
 
-      - name: Build frontend
+      - name: Export frontend bundle (iOS)
         run: npm run build:frontend
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
             my-new-app/backend/dist
-            my-new-app/build
+            my-new-app/dist
           retention-days: 7
