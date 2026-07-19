@@ -3,8 +3,8 @@
  * Redux slice for authentication state
  */
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../../../shared/types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../../../../shared/types";
 
 interface AuthState {
   user: User | null;
@@ -25,13 +25,13 @@ const initialState: AuthState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    
+
     setAuth: (
       state,
       action: PayloadAction<{
@@ -46,15 +46,15 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.error = null;
     },
-    
+
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
-    
+
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
     },
-    
+
     logout: (state) => {
       state.user = null;
       state.token = null;
@@ -69,4 +69,3 @@ export const { setLoading, setAuth, setUser, setError, logout } =
   authSlice.actions;
 
 export default authSlice.reducer;
-

@@ -3,7 +3,8 @@
  * TypeScript types for the frontend application
  */
 
-import { User, Category, Habit, HabitCompletion } from '../../../shared/types';
+import { User, Category, Habit } from "../../../shared/types";
+export { User, Category, Habit, HabitCompletion } from "../../../shared/types";
 
 /**
  * Character Stats (RPG System)
@@ -35,14 +36,14 @@ export interface Character {
  * Character Ranks
  */
 export type CharacterRank =
-  | 'Novice'
-  | 'Apprentice'
-  | 'Adept'
-  | 'Expert'
-  | 'Master'
-  | 'Grandmaster'
-  | 'Legend'
-  | 'Mythic';
+  | "Novice"
+  | "Apprentice"
+  | "Adept"
+  | "Expert"
+  | "Master"
+  | "Grandmaster"
+  | "Legend"
+  | "Mythic";
 
 /**
  * Skill
@@ -51,7 +52,7 @@ export interface Skill {
   id: string;
   name: string;
   description: string;
-  category: 'action' | 'support' | 'passive';
+  category: "action" | "support" | "passive";
   level: number;
   maxLevel: number;
   unlocked: boolean;
@@ -64,7 +65,12 @@ export interface Skill {
  * Skill Effect
  */
 export interface SkillEffect {
-  type: 'xp-boost' | 'coin-boost' | 'streak-shield' | 'time-extension' | 'stat-growth';
+  type:
+    | "xp-boost"
+    | "coin-boost"
+    | "streak-shield"
+    | "time-extension"
+    | "stat-growth";
   value: number;
   description: string;
 }
@@ -76,12 +82,12 @@ export interface Objective {
   id: string;
   title: string;
   description: string;
-  type: 'daily' | 'weekly' | 'achievement';
+  type: "daily" | "weekly" | "achievement";
   progress: number;
   target: number;
   rewards: Rewards;
   deadline?: Date;
-  status: 'pending' | 'in-progress' | 'completed' | 'expired';
+  status: "pending" | "in-progress" | "completed" | "expired";
   habitIds?: string[];
 }
 
@@ -91,7 +97,7 @@ export interface Objective {
 export interface Challenge {
   id: string;
   name: string;
-  difficulty: 'Easy' | 'Normal' | 'Hard' | 'Elite';
+  difficulty: "Easy" | "Normal" | "Hard" | "Elite";
   level: number;
   objectives: Objective[];
   rewards: Rewards;
@@ -119,7 +125,7 @@ export interface Item {
   id: string;
   name: string;
   description: string;
-  type: 'potion' | 'freeze' | 'elixir' | 'coin' | 'boost';
+  type: "potion" | "freeze" | "elixir" | "coin" | "boost";
   effect: string;
   quantity: number;
 }
