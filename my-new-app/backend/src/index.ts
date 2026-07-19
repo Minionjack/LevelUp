@@ -6,20 +6,21 @@
  * @description Initializes and starts the Fastify server with all plugins and routes
  */
 
-import Fastify from "fastify";
+import Fastify, { FastifyBaseLogger } from "fastify";
+
 import { config } from "@/config/env";
-import { logger } from "@/utils/logger";
 import { registerPlugins } from "@/config/plugins";
 import { registerRoutes } from "@/config/routes";
 import { errorHandler } from "@/middleware/error-handler";
 import { initDatabase, closeDatabase } from "@/services/database";
 import { initRedis, closeRedis } from "@/services/redis";
+import { logger } from "@/utils/logger";
 
 /**
  * Create Fastify instance with configuration
  */
 const fastify = Fastify({
-  logger: logger,
+  logger: logger as unknown as FastifyBaseLogger,
   requestIdLogLabel: "reqId",
   disableRequestLogging: false,
   requestIdHeader: "x-request-id",

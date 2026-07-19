@@ -5,19 +5,20 @@
  * @module services/redis
  */
 
-import { createClient, RedisClient } from "redis";
+import { createClient, RedisClientType } from "redis";
+
 import { config } from "@/config/env";
 import { logger } from "@/utils/logger";
 
 /**
  * Redis client instance
  */
-let client: RedisClient | null = null;
+let client: RedisClientType | null = null;
 
 /**
  * Initialize Redis connection
  */
-export async function initRedis(): Promise<RedisClient> {
+export async function initRedis(): Promise<RedisClientType> {
   // Check if client exists and is connected
   if (client) {
     try {
@@ -37,7 +38,7 @@ export async function initRedis(): Promise<RedisClient> {
     url: redisUrl,
   });
 
-  client.on("error", (err) => {
+  client.on("error", (err: Error) => {
     logger.error("Redis client error:", err);
   });
 
@@ -57,7 +58,7 @@ export async function initRedis(): Promise<RedisClient> {
 /**
  * Get Redis client instance
  */
-export async function getRedisClient(): Promise<RedisClient> {
+export async function getRedisClient(): Promise<RedisClientType> {
   if (!client) {
     return initRedis();
   }

@@ -1,20 +1,22 @@
 /**
- * ESLint configuration for LevelUp
- * Comprehensive linting rules for TypeScript and JavaScript
+ * ESLint configuration for the LevelUp backend
+ * Self-contained (root: true) so it doesn't inherit the frontend's
+ * Expo/React lint rules through directory-cascade merging.
  */
+const path = require("path");
+
 module.exports = {
   root: true,
   env: {
     node: true,
     es2021: true,
-    jest: true,
   },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "prettier", // Must be last to override other configs
+    "prettier",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -25,7 +27,6 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "import"],
   rules: {
-    // TypeScript specific rules
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -36,8 +37,6 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "warn",
-
-    // Import rules
     "import/order": [
       "error",
       {
@@ -57,8 +56,6 @@ module.exports = {
       },
     ],
     "import/no-unresolved": "error",
-
-    // General rules
     "no-console": ["warn", { allow: ["warn", "error"] }],
     "prefer-const": "error",
     "no-var": "error",
@@ -69,15 +66,9 @@ module.exports = {
     "import/resolver": {
       typescript: {
         alwaysTryTypes: true,
-        project: "./tsconfig.json",
+        project: path.join(__dirname, "tsconfig.json"),
       },
     },
   },
-  ignorePatterns: [
-    "node_modules/",
-    "dist/",
-    "build/",
-    "*.config.js",
-    ".eslintrc.js",
-  ],
+  ignorePatterns: ["node_modules/", "dist/", "*.config.js", ".eslintrc.js"],
 };

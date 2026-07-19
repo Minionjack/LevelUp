@@ -6,9 +6,10 @@
  */
 
 import { FastifyInstance } from "fastify";
+
+import { config } from "@/config/env";
 import { getPool } from "@/services/database";
 import { getRedisClient } from "@/services/redis";
-import { config } from "@/config/env";
 
 /**
  * Register health check routes
@@ -19,7 +20,7 @@ export async function healthRoutes(fastify: FastifyInstance): Promise<void> {
   /**
    * Basic health check
    */
-  fastify.get("/health", async (request, reply) => {
+  fastify.get("/health", async (_request, _reply) => {
     return {
       status: "ok",
       timestamp: new Date().toISOString(),
@@ -32,7 +33,7 @@ export async function healthRoutes(fastify: FastifyInstance): Promise<void> {
   /**
    * Detailed health check with service status
    */
-  fastify.get("/health/detailed", async (request, reply) => {
+  fastify.get("/health/detailed", async (_request, reply) => {
     const health = {
       status: "ok" as "ok" | "degraded" | "down",
       timestamp: new Date().toISOString(),

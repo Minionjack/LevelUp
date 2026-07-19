@@ -6,9 +6,10 @@
  */
 
 import { FastifyInstance } from "fastify";
+
 import { config } from "@/config/env";
-import { logger } from "@/utils/logger";
 import { healthRoutes } from "@/routes/health";
+import { logger } from "@/utils/logger";
 
 /**
  * Register all routes with Fastify instance
@@ -20,7 +21,7 @@ export async function registerRoutes(fastify: FastifyInstance): Promise<void> {
   await fastify.register(healthRoutes);
 
   // API version info
-  fastify.get(config.API_PREFIX, async (request, reply) => {
+  fastify.get(config.API_PREFIX, async (_request, _reply) => {
     return {
       version: "1.0.0",
       name: "LevelUp API",

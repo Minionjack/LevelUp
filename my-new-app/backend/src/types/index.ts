@@ -6,7 +6,18 @@
  */
 
 import { FastifyRequest } from "fastify";
-import { JWTPayload } from "../../../shared/types";
+
+/**
+ * JWT payload shape, mirrored from ../../../shared/types.
+ * Defined locally (not imported) because backend's tsconfig `rootDir`
+ * is scoped to `src/`, and reaching outside it breaks `tsc` emit.
+ */
+export interface JWTPayload {
+  userId: string;
+  email: string;
+  iat?: number;
+  exp?: number;
+}
 
 /**
  * Authenticated request with user information

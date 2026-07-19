@@ -5,13 +5,14 @@
  * @module config/plugins
  */
 
-import { FastifyInstance } from "fastify";
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import jwt from "@fastify/jwt";
 import rateLimit from "@fastify/rate-limit";
 import swagger from "@fastify/swagger";
 import swaggerUI from "@fastify/swagger-ui";
+import { FastifyInstance } from "fastify";
+
 import { config } from "@/config/env";
 import { logger } from "@/utils/logger";
 
@@ -53,7 +54,7 @@ export async function registerPlugins(fastify: FastifyInstance): Promise<void> {
   await fastify.register(rateLimit, {
     max: 100, // Maximum 100 requests
     timeWindow: "1 minute", // Per minute
-    errorResponseBuilder: (request, context) => {
+    errorResponseBuilder: (_request, _context) => {
       return {
         success: false,
         error: {

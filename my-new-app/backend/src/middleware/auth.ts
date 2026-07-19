@@ -6,8 +6,9 @@
  */
 
 import { FastifyRequest, FastifyReply } from "fastify";
-import { AuthenticatedRequest } from "@/types";
-import { JWTPayload } from "../../../shared/types";
+
+import { AuthenticatedRequest, JWTPayload } from "@/types";
+
 import { AppError } from "./error-handler";
 
 /**
@@ -16,7 +17,7 @@ import { AppError } from "./error-handler";
  */
 export async function authenticate(
   request: FastifyRequest,
-  reply: FastifyReply
+  _reply: FastifyReply
 ): Promise<void> {
   try {
     // Verify JWT token
@@ -40,7 +41,7 @@ export async function authenticate(
  */
 export async function optionalAuthenticate(
   request: FastifyRequest,
-  reply: FastifyReply
+  _reply: FastifyReply
 ): Promise<void> {
   try {
     await request.jwtVerify();

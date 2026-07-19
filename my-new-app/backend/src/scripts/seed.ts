@@ -5,9 +5,10 @@
  * @module scripts/seed
  */
 
-import { getPool, query } from "../services/database";
-import { logger } from "../utils/logger";
 import bcrypt from "bcrypt";
+
+import { query } from "../services/database";
+import { logger } from "../utils/logger";
 
 /**
  * Seed the database with initial data
@@ -15,9 +16,6 @@ import bcrypt from "bcrypt";
 async function seed(): Promise<void> {
   try {
     logger.info("Starting database seeding...");
-
-    // Initialize database connection
-    const pool = getPool();
 
     // Check if users already exist
     const existingUsers = await query<{ count: string }>(
@@ -71,7 +69,13 @@ async function seed(): Promise<void> {
         `INSERT INTO categories (user_id, name, description, color, icon)
          VALUES ($1, $2, $3, $4, $5)
          RETURNING id`,
-        [userId, category.name, category.description, category.color, category.icon]
+        [
+          userId,
+          category.name,
+          category.description,
+          category.color,
+          category.icon,
+        ]
       );
       categoryIds.push(result[0].id);
       logger.info(`✅ Created category: ${category.name}`);
@@ -140,4 +144,3 @@ seed()
   });
 
 export { seed };
-
