@@ -7,6 +7,7 @@
 
 import { FastifyError, FastifyReply, FastifyRequest } from "fastify";
 import { ZodError } from "zod";
+
 import { logger } from "@/utils/logger";
 
 /**

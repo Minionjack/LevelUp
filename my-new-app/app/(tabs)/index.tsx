@@ -3,10 +3,10 @@
  * Main dashboard screen
  */
 
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { DashboardScreen } from '@/screens/DashboardScreen';
-import { ErrorBoundary } from '@/components/ErrorBoundary';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { DashboardScreen } from "@/screens/DashboardScreen";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export default function DashboardTab() {
   return (
@@ -21,7 +21,6 @@ export default function DashboardTab() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#0f0f1e',
+    backgroundColor: "#0f0f1e",
   },
 });
-

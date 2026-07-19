@@ -9,7 +9,9 @@ export default function TestScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>LevelUp App is Working! 🎉</Text>
-      <Text style={styles.subtext}>If you see this, the app is loading correctly.</Text>
+      <Text style={styles.subtext}>
+        If you see this, the app is loading correctly.
+      </Text>
     </View>
   );
 }
@@ -35,4 +37,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-

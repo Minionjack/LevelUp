@@ -58,12 +58,14 @@ src/
 ## 🎮 Features
 
 ### RPG Progression System
+
 - Character stats (STR, AGI, INT, VIT, CHA, LUK)
 - XP and leveling system
 - Rank progression
 - Stat point allocation
 
 ### Components
+
 - Animated XP bar
 - Character avatar with animations
 - Stat bars with progress

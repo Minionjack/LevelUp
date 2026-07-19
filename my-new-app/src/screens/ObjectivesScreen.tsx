@@ -4,25 +4,19 @@
  * Based on Solo Leveling design document
  */
 
-import React, { useMemo, useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/store';
-import { ObjectiveCard } from '@/components/ObjectiveCard';
-import { DailyChallenge } from '@/components/DailyChallenge';
+import React, { useMemo, useEffect } from "react";
+import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store";
+import { ObjectiveCard } from "@/components/ObjectiveCard";
+import { DailyChallenge } from "@/components/DailyChallenge";
 import {
   completeObjective,
   setObjectives,
   setChallenge,
-} from '@/store/slices/objectiveSlice';
-import { addXP } from '@/store/slices/characterSlice';
-import { initializeSampleData } from '@/utils/sampleData';
+} from "@/store/slices/objectiveSlice";
+import { addXP } from "@/store/slices/characterSlice";
+import { initializeSampleData } from "@/utils/sampleData";
 
 /**
  * Objectives Screen Component
@@ -50,15 +44,15 @@ export const ObjectivesScreen: React.FC = () => {
 
   // Filter objectives by type
   const dailyObjectives = useMemo(
-    () => objectives.filter((obj) => obj.type === 'daily'),
+    () => objectives.filter((obj) => obj.type === "daily"),
     [objectives]
   );
   const weeklyObjectives = useMemo(
-    () => objectives.filter((obj) => obj.type === 'weekly'),
+    () => objectives.filter((obj) => obj.type === "weekly"),
     [objectives]
   );
   const achievementObjectives = useMemo(
-    () => objectives.filter((obj) => obj.type === 'achievement'),
+    () => objectives.filter((obj) => obj.type === "achievement"),
     [objectives]
   );
 
@@ -66,7 +60,7 @@ export const ObjectivesScreen: React.FC = () => {
     // In a real app, this would navigate to objective details
     // For now, we'll just handle completion
     const objective = objectives.find((obj) => obj.id === objectiveId);
-    if (objective && objective.status === 'in-progress') {
+    if (objective && objective.status === "in-progress") {
       // Check if objective can be completed
       if (objective.progress >= objective.target) {
         dispatch(completeObjective(objectiveId));
@@ -179,7 +173,7 @@ export const ObjectivesScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0f0f1e',
+    backgroundColor: "#0f0f1e",
   },
   content: {
     paddingBottom: 32,
@@ -193,22 +187,22 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontWeight: "bold",
+    color: "#fff",
     marginBottom: 4,
   },
   sectionSubtitle: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
   emptyState: {
-    backgroundColor: '#1a1a2e',
+    backgroundColor: "#1a1a2e",
     borderRadius: 12,
     padding: 32,
     marginHorizontal: 16,
-    alignItems: 'center',
+    alignItems: "center",
     borderWidth: 1,
-    borderColor: '#2a2a3e',
+    borderColor: "#2a2a3e",
   },
   emptyIcon: {
     fontSize: 48,
@@ -216,14 +210,13 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#fff',
+    fontWeight: "600",
+    color: "#fff",
     marginBottom: 4,
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#666',
-    textAlign: 'center',
+    color: "#666",
+    textAlign: "center",
   },
 });
-

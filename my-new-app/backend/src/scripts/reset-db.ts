@@ -7,6 +7,7 @@
 
 import { getPool } from "../services/database";
 import { logger } from "../utils/logger";
+
 import { migrate } from "./migrate";
 import { seed } from "./seed";
 
@@ -32,7 +33,9 @@ async function resetDatabase(): Promise<void> {
       await client.query("DROP TABLE IF EXISTS migrations CASCADE");
 
       // Drop functions and extensions
-      await client.query("DROP FUNCTION IF EXISTS update_updated_at_column() CASCADE");
+      await client.query(
+        "DROP FUNCTION IF EXISTS update_updated_at_column() CASCADE"
+      );
       await client.query("DROP EXTENSION IF EXISTS uuid-ossp CASCADE");
 
       await client.query("COMMIT");
@@ -70,4 +73,3 @@ resetDatabase()
   });
 
 export { resetDatabase };
-

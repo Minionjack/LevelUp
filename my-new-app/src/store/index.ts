@@ -3,23 +3,23 @@
  * Main store setup with Redux Toolkit and persistence
  */
 
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import authReducer from './slices/authSlice';
-import characterReducer from './slices/characterSlice';
-import habitReducer from './slices/habitSlice';
-import objectiveReducer from './slices/objectiveSlice';
-import inventoryReducer from './slices/inventorySlice';
+import authReducer from "./slices/authSlice";
+import characterReducer from "./slices/characterSlice";
+import habitReducer from "./slices/habitSlice";
+import objectiveReducer from "./slices/objectiveSlice";
+import inventoryReducer from "./slices/inventorySlice";
 
 /**
  * Persist configuration
  */
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
-  whitelist: ['auth', 'character', 'inventory'], // Only persist these slices
+  whitelist: ["auth", "character", "inventory"], // Only persist these slices
 };
 
 /**
@@ -46,7 +46,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
     }),
 });
@@ -61,4 +61,3 @@ export const persistor = persistStore(store);
  */
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-

@@ -3,9 +3,9 @@
  * Objectives/quests screen
  */
 
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { ObjectivesScreen } from '@/screens/ObjectivesScreen';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { ObjectivesScreen } from "@/screens/ObjectivesScreen";
 
 export default function ObjectivesTab() {
   return (
@@ -18,7 +18,6 @@ export default function ObjectivesTab() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#0f0f1e',
+    backgroundColor: "#0f0f1e",
   },
 });
-

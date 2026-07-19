@@ -7,7 +7,7 @@
  * API Configuration
  */
 export const API_CONFIG = {
-  BASE_URL: process.env.EXPO_PUBLIC_API_URL || 'http://localhost:4000/api/v1',
+  BASE_URL: process.env.EXPO_PUBLIC_API_URL || "http://localhost:4000/api/v1",
   TIMEOUT: 10000,
 };
 
@@ -26,36 +26,36 @@ export const RPG_CONFIG = {
  * Stat Colors
  */
 export const STAT_COLORS = {
-  STR: '#FF6B6B', // Red
-  AGI: '#4ECDC4', // Cyan
-  INT: '#95E1D3', // Teal
-  VIT: '#F38181', // Pink
-  CHA: '#AA96DA', // Purple
-  LUK: '#FFD93D', // Yellow
+  STR: "#FF6B6B", // Red
+  AGI: "#4ECDC4", // Cyan
+  INT: "#95E1D3", // Teal
+  VIT: "#F38181", // Pink
+  CHA: "#AA96DA", // Purple
+  LUK: "#FFD93D", // Yellow
 } as const;
 
 /**
  * Stat Icons
  */
 export const STAT_ICONS = {
-  STR: '💪',
-  AGI: '⚡',
-  INT: '🧠',
-  VIT: '❤️',
-  CHA: '✨',
-  LUK: '🍀',
+  STR: "💪",
+  AGI: "⚡",
+  INT: "🧠",
+  VIT: "❤️",
+  CHA: "✨",
+  LUK: "🍀",
 } as const;
 
 /**
  * Stat Labels
  */
 export const STAT_LABELS = {
-  STR: 'Strength',
-  AGI: 'Agility',
-  INT: 'Intelligence',
-  VIT: 'Vitality',
-  CHA: 'Charisma',
-  LUK: 'Luck',
+  STR: "Strength",
+  AGI: "Agility",
+  INT: "Intelligence",
+  VIT: "Vitality",
+  CHA: "Charisma",
+  LUK: "Luck",
 } as const;
 
 /**
@@ -76,16 +76,15 @@ export const RANK_THRESHOLDS = {
  * Theme Colors
  */
 export const COLORS = {
-  background: '#0f0f1e',
-  surface: '#1a1a2e',
-  surfaceLight: '#2a2a3e',
-  primary: '#64C8FF',
-  secondary: '#4CAF50',
-  accent: '#FFD700',
-  text: '#ffffff',
-  textSecondary: '#666666',
-  error: '#FF6B6B',
-  success: '#4CAF50',
-  warning: '#FFD93D',
+  background: "#0f0f1e",
+  surface: "#1a1a2e",
+  surfaceLight: "#2a2a3e",
+  primary: "#64C8FF",
+  secondary: "#4CAF50",
+  accent: "#FFD700",
+  text: "#ffffff",
+  textSecondary: "#666666",
+  error: "#FF6B6B",
+  success: "#4CAF50",
+  warning: "#FFD93D",
 } as const;
-

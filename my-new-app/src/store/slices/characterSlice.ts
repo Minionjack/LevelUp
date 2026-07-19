@@ -3,8 +3,8 @@
  * Redux slice for character/RPG system state
  */
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Character, CharacterStats, CharacterRank } from '@/types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Character, CharacterStats, CharacterRank } from "@/types";
 
 /**
  * Calculate XP required for next level
@@ -20,14 +20,14 @@ function calculateNextLevelXP(level: number): number {
  * Calculate rank from level
  */
 function calculateRank(level: number): CharacterRank {
-  if (level >= 100) return 'Mythic';
-  if (level >= 75) return 'Legend';
-  if (level >= 50) return 'Grandmaster';
-  if (level >= 35) return 'Master';
-  if (level >= 25) return 'Expert';
-  if (level >= 15) return 'Adept';
-  if (level >= 5) return 'Apprentice';
-  return 'Novice';
+  if (level >= 100) return "Mythic";
+  if (level >= 75) return "Legend";
+  if (level >= 50) return "Grandmaster";
+  if (level >= 35) return "Master";
+  if (level >= 25) return "Expert";
+  if (level >= 15) return "Adept";
+  if (level >= 5) return "Apprentice";
+  return "Novice";
 }
 
 /**
@@ -38,7 +38,7 @@ const initialCharacter: Character = {
   level: 1,
   xp: 25, // Start with some XP to show progress
   nextLevelXP: calculateNextLevelXP(2),
-  rank: 'Novice',
+  rank: "Novice",
   stats: {
     STR: 10, // Base stats for a new character
     AGI: 10,
@@ -65,7 +65,7 @@ const initialState: CharacterState = {
  * Character slice
  */
 const characterSlice = createSlice({
-  name: 'character',
+  name: "character",
   initialState,
   reducers: {
     /**
@@ -74,10 +74,10 @@ const characterSlice = createSlice({
     addXP: (state, action: PayloadAction<number>) => {
       const { character } = state;
       const xpGained = action.payload;
-      
+
       character.xp += xpGained;
       character.totalXP += xpGained;
-      
+
       // Check for level up
       while (character.xp >= character.nextLevelXP) {
         character.xp -= character.nextLevelXP;
@@ -88,7 +88,7 @@ const characterSlice = createSlice({
         state.isLevelingUp = true;
       }
     },
-    
+
     /**
      * Allocate stat point
      */
@@ -98,27 +98,27 @@ const characterSlice = createSlice({
     ) => {
       const { stat, points } = action.payload;
       const { character } = state;
-      
+
       if (character.availableStatPoints >= points) {
         character.stats[stat] += points;
         character.availableStatPoints -= points;
       }
     },
-    
+
     /**
      * Set level up animation complete
      */
     setLevelUpComplete: (state) => {
       state.isLevelingUp = false;
     },
-    
+
     /**
      * Set character data (from API)
      */
     setCharacter: (state, action: PayloadAction<Character>) => {
       state.character = action.payload;
     },
-    
+
     /**
      * Update character stats
      */
@@ -128,7 +128,7 @@ const characterSlice = createSlice({
         ...action.payload,
       };
     },
-    
+
     /**
      * Reset character (for testing)
      */
@@ -149,4 +149,3 @@ export const {
 } = characterSlice.actions;
 
 export default characterSlice.reducer;
-

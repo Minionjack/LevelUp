@@ -48,5 +48,10 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: [".eslintrc.js"],
+  // backend/ has its own dedicated eslintrc + lint script (npm run
+  // lint:backend); scanning it here too is redundant and hits backend
+  // config files (e.g. vitest.config.ts) that aren't covered by
+  // backend's own tsconfig, since this config's parserOptions.project
+  // points at the frontend's tsconfig.
+  ignorePatterns: [".eslintrc.js", "backend/"],
 };

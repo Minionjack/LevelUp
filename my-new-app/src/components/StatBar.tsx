@@ -3,13 +3,13 @@
  * Individual stat display with animated progress bar
  */
 
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
 interface StatBarProps {
   label: string;
@@ -30,16 +30,16 @@ export const StatBar: React.FC<StatBarProps> = ({
   icon,
 }) => {
   const progress = useSharedValue(0);
-  
+
   useEffect(() => {
     const progressValue = Math.min(value / maxValue, 1);
     progress.value = withSpring(progressValue, { damping: 15 });
   }, [value, maxValue]);
-  
+
   const animatedStyle = useAnimatedStyle(() => ({
     width: `${progress.value * 100}%`,
   }));
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -49,17 +49,13 @@ export const StatBar: React.FC<StatBarProps> = ({
         </View>
         <Text style={styles.value}>{value}</Text>
       </View>
-      
+
       <View style={styles.barContainer}>
-        <View style={[styles.barBackground, { borderColor: color + '40' }]}>
+        <View style={[styles.barBackground, { borderColor: color + "40" }]}>
           <Animated.View
-            style={[
-              styles.barFill,
-              { backgroundColor: color },
-              animatedStyle,
-            ]}
+            style={[styles.barFill, { backgroundColor: color }, animatedStyle]}
           >
-            <View style={[styles.barGlow, { backgroundColor: color + '40' }]} />
+            <View style={[styles.barGlow, { backgroundColor: color + "40" }]} />
           </Animated.View>
         </View>
       </View>
@@ -72,14 +68,14 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 4,
   },
   labelContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   icon: {
     fontSize: 16,
@@ -87,36 +83,36 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    fontWeight: '600',
-    color: '#fff',
+    fontWeight: "600",
+    color: "#fff",
   },
   value: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#64C8FF',
+    fontWeight: "bold",
+    color: "#64C8FF",
   },
   barContainer: {
-    position: 'relative',
+    position: "relative",
   },
   barBackground: {
     height: 12,
-    backgroundColor: '#0f0f1e',
+    backgroundColor: "#0f0f1e",
     borderRadius: 6,
-    overflow: 'hidden',
+    overflow: "hidden",
     borderWidth: 1,
   },
   barFill: {
-    height: '100%',
+    height: "100%",
     borderRadius: 6,
-    position: 'relative',
-    shadowColor: '#000',
+    position: "relative",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 3,
   },
   barGlow: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
@@ -124,4 +120,3 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
 });
-

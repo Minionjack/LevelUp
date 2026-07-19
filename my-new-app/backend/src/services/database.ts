@@ -6,6 +6,7 @@
  */
 
 import { Pool, PoolClient } from "pg";
+
 import { config } from "@/config/env";
 import { logger } from "@/utils/logger";
 

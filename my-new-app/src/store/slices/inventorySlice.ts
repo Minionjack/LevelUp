@@ -3,8 +3,8 @@
  * Redux slice for inventory/currency state
  */
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Inventory, Item } from '@/types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Inventory, Item } from "@/types";
 
 const initialState: Inventory = {
   coins: 0,
@@ -12,7 +12,7 @@ const initialState: Inventory = {
 };
 
 const inventorySlice = createSlice({
-  name: 'inventory',
+  name: "inventory",
   initialState,
   reducers: {
     /**
@@ -21,7 +21,7 @@ const inventorySlice = createSlice({
     addCoins: (state, action: PayloadAction<number>) => {
       state.coins += action.payload;
     },
-    
+
     /**
      * Spend coins
      */
@@ -30,14 +30,14 @@ const inventorySlice = createSlice({
         state.coins -= action.payload;
       }
     },
-    
+
     /**
      * Set coins
      */
     setCoins: (state, action: PayloadAction<number>) => {
       state.coins = action.payload;
     },
-    
+
     /**
      * Add item
      */
@@ -49,11 +49,14 @@ const inventorySlice = createSlice({
         state.items.push(action.payload);
       }
     },
-    
+
     /**
      * Remove item
      */
-    removeItem: (state, action: PayloadAction<{ id: string; quantity: number }>) => {
+    removeItem: (
+      state,
+      action: PayloadAction<{ id: string; quantity: number }>
+    ) => {
       const item = state.items.find((i) => i.id === action.payload.id);
       if (item) {
         item.quantity -= action.payload.quantity;
@@ -62,7 +65,7 @@ const inventorySlice = createSlice({
         }
       }
     },
-    
+
     /**
      * Set inventory
      */
@@ -82,4 +85,3 @@ export const {
 } = inventorySlice.actions;
 
 export default inventorySlice.reducer;
-
