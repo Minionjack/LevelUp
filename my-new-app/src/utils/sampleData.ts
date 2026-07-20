@@ -27,7 +27,7 @@ export const generateSampleDailyObjectives = (): Objective[] => {
         xp: 50,
         coins: 10,
       },
-      deadline: tomorrow,
+      deadline: tomorrow.toISOString(),
       status: "in-progress",
     },
     {
@@ -41,7 +41,7 @@ export const generateSampleDailyObjectives = (): Objective[] => {
         xp: 100,
         coins: 20,
       },
-      deadline: tomorrow,
+      deadline: tomorrow.toISOString(),
       status: "in-progress",
     },
     {
@@ -56,7 +56,7 @@ export const generateSampleDailyObjectives = (): Objective[] => {
         coins: 30,
         statPoints: 1,
       },
-      deadline: tomorrow,
+      deadline: tomorrow.toISOString(),
       status: "pending",
     },
   ];
@@ -84,7 +84,7 @@ export const generateSampleWeeklyObjectives = (): Objective[] => {
         xp: 500,
         coins: 100,
       },
-      deadline: nextSunday,
+      deadline: nextSunday.toISOString(),
       status: "in-progress",
     },
     {
@@ -99,7 +99,7 @@ export const generateSampleWeeklyObjectives = (): Objective[] => {
         coins: 200,
         skillPoints: 1,
       },
-      deadline: nextSunday,
+      deadline: nextSunday.toISOString(),
       status: "in-progress",
     },
   ];
@@ -245,7 +245,7 @@ export const generateSampleDailyChallenge = (level: number = 1): Challenge => {
     },
     progress: 0,
     completed: false,
-    date: today,
+    date: today.toISOString(),
   };
 };
 

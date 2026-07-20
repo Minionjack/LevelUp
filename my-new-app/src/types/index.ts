@@ -86,7 +86,7 @@ export interface Objective {
   progress: number;
   target: number;
   rewards: Rewards;
-  deadline?: Date;
+  deadline?: string;
   status: "pending" | "in-progress" | "completed" | "expired";
   habitIds?: string[];
 }
@@ -103,7 +103,7 @@ export interface Challenge {
   rewards: Rewards;
   progress: number;
   completed: boolean;
-  date: Date;
+  date: string;
 }
 
 /**
