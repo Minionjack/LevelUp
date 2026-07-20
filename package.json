@@ -87,6 +87,7 @@
   },
   "homepage": "https://github.com/Minionjack/LevelUp#readme",
   "overrides": {
-    "react-native-worklets": "0.5.1"
+    "react-native-worklets": "0.5.1",
+    "react": "19.1.0"
   }
 }
